@@ -109,5 +109,31 @@ public class LoopQueue<E> implements Queue<E> {
         return data[front];
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("queue : size = %d, capacity = %d\n", size, getCapacity()));
+        sb.append("front [");
+        for (int i = front; i != tail; i = (i + 1) % data.length) {
+            sb.append(data[i]);
+            if ((i + 1) % data.length != tail) {
+                sb.append(", ");
+            }
+        }
+        sb.append("] tail");
+        return sb.toString();
+    }
 
+    public static void main(String[] args) {
+
+        LoopQueue<Integer> queue = new LoopQueue<>();
+        for(int i = 0 ; i < 10 ; i ++){
+            queue.enqueue(i);
+            System.out.println(queue);
+            if(i % 3 == 2){
+                queue.dequeue();
+                System.out.println(queue);
+            }
+        }
+    }
 }
