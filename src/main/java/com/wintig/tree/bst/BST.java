@@ -1,5 +1,7 @@
 package com.wintig.tree.bst;
 
+import java.util.Stack;
+
 /**
  * @author shitian
  * @create 2018-08-18 下午9:43
@@ -63,6 +65,109 @@ public class BST<E extends Comparable<E>> {
             return contains(node.right, e);
         }
 
+    }
+
+    //前序遍历序列
+    public void preOrder() {
+        preOrder(root);
+    }
+
+    //以node为根的前序遍历
+    private void preOrder(Node node) {
+
+        if (node == null) {
+            return;
+        }
+
+        System.out.println(node.e);
+
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+
+    //中序遍历序列
+    public void inOrder() {
+        inOrder(root);
+    }
+
+    //以node为根的前序遍历
+    private void inOrder(Node node) {
+
+        if (node == null) {
+            return;
+        }
+
+        inOrder(node.left);
+        System.out.println(node.e);
+        inOrder(node.right);
+    }
+
+    //后序遍历序列
+    public void postOrder() {
+        postOrder(root);
+    }
+
+    //以node为根的前序遍历
+    private void postOrder(Node node) {
+
+        if (node == null) {
+            return;
+        }
+
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.println(node.e);
+    }
+
+    //二分搜索树非递归前序遍历
+    public void preOrderNR() {
+
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+
+            Node current = stack.pop();
+            System.out.println(current.e);
+
+            if (current.right != null) {
+
+                stack.push(current.right);
+            }
+
+            if (current.left != null) {
+
+                stack.push(current.left);
+            }
+        }
+
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder res = new StringBuilder();
+        generateBSTString(root, 0, res);
+        return res.toString();
+    }
+
+    // 生成以node为根节点，深度为depth的描述二叉树的字符串
+    private void generateBSTString(Node node, int depth, StringBuilder res){
+
+        if(node == null){
+            res.append(generateDepthString(depth) + "null\n");
+            return;
+        }
+
+        res.append(generateDepthString(depth) + node.e + "\n");
+        generateBSTString(node.left, depth + 1, res);
+        generateBSTString(node.right, depth + 1, res);
+    }
+
+    private String generateDepthString(int depth){
+        StringBuilder res = new StringBuilder();
+        for(int i = 0 ; i < depth ; i ++)
+            res.append("--");
+        return res.toString();
     }
 
     private class Node{
