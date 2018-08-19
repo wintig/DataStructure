@@ -1,5 +1,7 @@
 package com.wintig.tree.bst;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -141,6 +143,46 @@ public class BST<E extends Comparable<E>> {
             }
         }
 
+    }
+
+    //层序遍历
+    public void levelOrder() {
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            Node current = queue.remove();
+            System.out.println(current.e);
+
+            if (current.left != null) {
+                queue.add(current.left);
+            }
+
+            if (current.right != null) {
+                queue.add(current.right);
+            }
+        }
+
+    }
+
+    //寻找二分搜索树中最小的元素
+    public E minimum() {
+
+        if (size == 0) {
+            throw new IllegalArgumentException("BST is empty!");
+        }
+
+        return minimum(root).e;
+    }
+
+    private Node minimum(Node node) {
+
+        if (node.left == null) {
+            return node;
+        }
+
+        return minimum(node.left);
     }
 
     @Override

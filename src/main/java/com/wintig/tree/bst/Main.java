@@ -31,9 +31,11 @@ public class Main {
 //        System.out.println("=================");
 //        bst.postOrder();
 
-        bst.preOrder();
-        System.out.println("=======");
-        bst.preOrderNR();
+//        bst.preOrder();
+//        System.out.println("=======");
+//        bst.preOrderNR();
+
+        bst.levelOrder();
     }
 
 }
