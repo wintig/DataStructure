@@ -21,6 +21,15 @@ public class ArrayList<E> {
         this(10);
     }
 
+    // 无参数的构造函数，默认数组的容量capacity=10
+    public ArrayList(E[] array){
+        data = (E[])new Object[array.length];
+        for (int i = 0; i < array.length; i++) {
+            data[i] = array[i];
+        }
+        size = array.length;
+    }
+
     // 获取数组的容量
     public int getCapacity(){
         return data.length;
@@ -161,6 +170,17 @@ public class ArrayList<E> {
         if(index != -1) {
             remove(index);
         }
+    }
+
+    public void swap(int i, int j){
+
+        if (i < 0 || i >= size || j < 0 || j >= size) {
+            throw new IllegalArgumentException("Index is illegal.");
+        }
+
+        E t = data[i];
+        data[i] = data[j];
+        data[j] = t;
     }
 
     @Override
