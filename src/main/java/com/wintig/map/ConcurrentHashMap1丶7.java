@@ -17,11 +17,6 @@ public class ConcurrentHashMap1丶7<K, V> {
      * 从而达到了提升并发的特性。
      * 理论上ConcurrentHashMap支持当先线程数量的并发，每当一个线程占用锁访问一个Segment时，不会影响到其他的Segment
      *
-     *
-     * JDK 1.7的ConcurrentHashMap解决了并发问题，并且理论支持N个Segment多次数的并发，但依然存在HashMap再1.7版本中的问题就是遍历链表效率太低
-     * 结构上JDK1.8中抛弃了原有的segment分段锁，采用的CAS + synchronized来保证并发安全
-     *
-     *
      */
 
     public static void main(String[] args) {
